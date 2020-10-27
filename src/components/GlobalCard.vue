@@ -6,10 +6,12 @@
         <h2>{{ card.title }}</h2>
       </div>
       <div class="prev-content">
-        <div v-if="card.imgs.length !== 0" class="prev-content-img">
-          <img style="display: block;width: 100%;height: 100%" :src="card.imgs[0]">
-          <img style="display: block;width: 100%;height: 100%" :src="card.imgs[1]">
+        <div class="prev-img">
+          <div @click="imgMax" v-if="card.imgs.length !== 0" class="prev-content-img" :style="{backgroundImage: `url(${card.imgs[0]})`}"></div>
+          <div style="width: 5px"></div>
+          <div @click="imgMax" v-if="card.imgs.length >= 2" class="prev-content-img" :style="{backgroundImage: `url(${card.imgs[1]})`}"></div>
         </div>
+        <div style="width: 20px"></div>
         <div class="prev-content-text">{{ card.content }}</div>
       </div>
       <div class="tags">
@@ -28,6 +30,24 @@ export default {
   props: [
     "card",
   ],
+  data() {
+    return {
+      url: "",
+    }
+  },
+  methods: {
+    imgMax(e) {
+      let style = e.target.style;
+      style.position = "relative";
+      if (style.left === null|| style.left === "" || style.left === undefined || style.left === "0%") {
+        style.left = '50%';
+        style.top = '50%';
+      } else {
+        style.left = '0%';
+        style.top = '0%';
+      }
+    },
+  }
 }
 </script>
 
@@ -50,17 +70,25 @@ export default {
   height: 120px;
   padding: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
 }
 
-.global-card .content .prev-content-img {
+.global-card .content .prev-content .prev-img {
+  display: flex;
+  justify-content: center;
+}
+
+.global-card .content .prev-img .prev-content-img {
+  overflow: hidden;
   height: 120px;
   width: 120px;
+  background: no-repeat center center;
+  background-size: contain;
 }
 
 .prev-content .prev-content-text {
   padding: 5px;
-  width: 600px;
+  width: 560px;
   text-overflow:ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;

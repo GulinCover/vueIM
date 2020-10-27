@@ -83,6 +83,7 @@ export default {
           title: "this is a title",
           imgs: [
             "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
+            "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
           ],
           content: "this is a prev-contentthis is a prev-contentthis is a prev-content" +
               "this is a prev-contentthis is a prev-contentthis is a prev-content" +
@@ -115,7 +116,9 @@ export default {
         {
           title: "this is a title",
           content: "this is a prev-content",
-          imgs: [],
+          imgs: [
+              "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
+          ],
           tags: [
             {
               name: "ok",
@@ -134,7 +137,9 @@ export default {
         {
           title: "this is a title",
           content: "this is a prev-content",
-          imgs: [],
+          imgs: [
+              "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1011150365,2195457257&fm=26&gp=0.jpg",
+          ],
           tags: [
             {
               name: "ok",
