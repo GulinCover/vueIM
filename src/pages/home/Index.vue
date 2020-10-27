@@ -9,7 +9,12 @@
     <div style="height: 24px"></div>
     <div class="home-content">
       <div class="home-content-left"></div>
-      <div class="home-content-middle"></div>
+      <div class="home-content-middle">
+        <global-card v-for="(item, index) in cards" :key="index"
+                     :card="item"
+        ><hr></global-card>
+
+      </div>
       <div class="home-content-right"></div>
     </div>
 
@@ -24,6 +29,7 @@
 import GlobalTopTools from "@/components/GlobalTopTools";
 import {timeTools} from "@/utils/timeTools"
 import GlobalBottom from "@/components/GlobalBottom";
+import GlobalCard from "@/components/GlobalCard";
 
 export default {
   name: "index",
@@ -70,10 +76,142 @@ export default {
       bottomDataList: {
         top: "Welcome to the memory of the internet",
         text: "Power By GulinCover@2020.10.21"
-      }
+      },
+
+      cards: [
+        {
+          title: "this is a title",
+          imgs: [
+            "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
+          ],
+          content: "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content" +
+              "this is a prev-contentthis is a prev-contentthis is a prev-content",
+          tags: [
+            {
+              name: "ok",
+              tag: ""
+            },
+            {
+              name: "no ok",
+              tag: ""
+            },
+            {
+              name: "bad",
+              tag: ""
+            },
+          ],
+        },
+        {
+          title: "this is a title",
+          content: "this is a prev-content",
+          imgs: [],
+          tags: [
+            {
+              name: "ok",
+              tag: ""
+            },
+            {
+              name: "no ok",
+              tag: ""
+            },
+            {
+              name: "bad",
+              tag: ""
+            },
+          ],
+        },
+        {
+          title: "this is a title",
+          content: "this is a prev-content",
+          imgs: [],
+          tags: [
+            {
+              name: "ok",
+              tag: ""
+            },
+            {
+              name: "no ok",
+              tag: ""
+            },
+            {
+              name: "bad",
+              tag: ""
+            },
+          ],
+        },
+        {
+          title: "this is a title",
+          content: "this is a prev-content",
+          imgs: [],
+          tags: [
+            {
+              name: "ok",
+              tag: ""
+            },
+            {
+              name: "no ok",
+              tag: ""
+            },
+            {
+              name: "bad",
+              tag: ""
+            },
+          ],
+        },
+        {
+          title: "this is a title",
+          content: "this is a prev-content",
+          imgs: [],
+          tags: [
+            {
+              name: "ok",
+              tag: ""
+            },
+            {
+              name: "no ok",
+              tag: ""
+            },
+            {
+              name: "bad",
+              tag: ""
+            },
+          ],
+        },
+        {
+          title: "this is a title",
+          content: "this is a prev-content",
+          imgs: [],
+          tags: [
+            {
+              name: "ok",
+              tag: ""
+            },
+            {
+              name: "no ok",
+              tag: ""
+            },
+            {
+              name: "bad",
+              tag: ""
+            },
+          ],
+        },
+      ],
     }
   },
   components: {
+    GlobalCard,
     GlobalBottom,
     GlobalTopTools
   },
@@ -99,21 +237,21 @@ export default {
 
 .home-index .home-content {
   display: flex;
-  height: 800px;
+  /*height: 800px;*/
 }
 
 .home-content .home-content-left {
-  flex: 1;
-  background-color: #535353;
+  flex: 2;
+  /*background-color: #535353;*/
 }
 
 .home-content .home-content-middle {
-  flex: 8;
+  width: 1000px;
   background-color: beige;
 }
 
 .home-content .home-content-right {
-  flex: 3;
-  background-color: aqua;
+  flex: 2;
+  /*background-color: aqua;*/
 }
 </style>

@@ -24,7 +24,7 @@ export default {
 .global-top-tools {
   width: auto;
   height: 24px;
-  background-color: #e3e3e3;
+  background-image: linear-gradient(90deg, #eaeaea, #FCFCFC, #eaeaea);
   display: flex;
   justify-content: space-between;
 }

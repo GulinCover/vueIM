@@ -2,10 +2,10 @@
   <div class="global-bottom">
     <div class="bottom-content">
       <div class="bottom-content-top">
-        <div v-for="item in topDataList" :key="item.title" class="">
+        <div v-for="(item, index) in topDataList" :key="index" class="">
           <h4 style="font-weight: 1200">{{item.title}}</h4>
           <div>
-            <div v-for="it in item.content" :key="it">
+            <div v-for="(it, i) in item.content" :key="i">
               <div v-if="it.url">
                 <a :href="it.url" target="_blank" style="font-family: font;color: #FCFCFC">
                   <span>{{it.text}}</span>
@@ -42,7 +42,7 @@ export default {
 .global-bottom {
   height: 300px;
   width: auto;
-  background-color: #1A1A1A;
+  background-image: linear-gradient(-45deg, #0a0a0a, #212121);
   color: #FCFCFC;
   display: flex;
   justify-content: center;

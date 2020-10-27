@@ -28,7 +28,7 @@ export default {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: #535353;
+  background: linear-gradient(60deg, #535353, #7a7a7a);
 }
 ::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -37,4 +37,5 @@ export default {
   font-family: "font";
   src: url("./assets/font.ttf") format("ttf");
 }
+
 </style>
