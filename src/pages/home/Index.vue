@@ -230,6 +230,11 @@ export default {
 </script>
 
 <style>
+.home-index {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 300px;
+}
 .home-index .middle span {
   font-size: 8px;
 }

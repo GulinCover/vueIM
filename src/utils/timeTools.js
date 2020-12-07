@@ -1,5 +1,5 @@
 export {
-    timeTools
+    timeTools,
 }
 
 function timeTools(date) {
