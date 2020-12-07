@@ -8,6 +8,11 @@ const routes = [
         path: "/",
         component: ()=>import("@/pages/home/Index"),
     },
+    {
+        path: "/topic/:id",
+        name: "topicPage",
+        component: ()=>import("@/pages/topicPages/TopicPage"),
+    },
 ]
 
 let router = new VueRouter({
