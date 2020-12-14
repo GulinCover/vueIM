@@ -13,6 +13,11 @@ const routes = [
         name: "topicPage",
         component: ()=>import("@/pages/topicPages/TopicPage"),
     },
+    {
+        path: "/submit/topic",
+        name: "submitTopicPage",
+        component: ()=>import("@/pages/submitPage/RichTextEditor"),
+    },
 ]
 
 let router = new VueRouter({

@@ -24,6 +24,8 @@
       </div>
     </div>
 
+
+
     <global-bottom :top-data-list="topDataList"
                    :bottom-data-list="bottomDataList"
                    class="global-bottom"
