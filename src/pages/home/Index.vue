@@ -18,8 +18,7 @@
       <div class="home-content-right"></div>
     </div>
 
-    <global-bottom :top-data-list="topDataList"
-                   :bottom-data-list="bottomDataList"
+    <global-bottom
     ></global-bottom>
 
   </div>
@@ -233,7 +232,6 @@ export default {
 .home-index {
   min-height: 100%;
   position: relative;
-  padding-bottom: 300px;
 }
 .home-index .middle span {
   font-size: 8px;
@@ -247,6 +245,7 @@ export default {
 
 .home-index .home-content {
   display: flex;
+  margin-bottom: 300px;
   /*height: 800px;*/
 }
 
@@ -257,7 +256,7 @@ export default {
 
 .home-content .home-content-middle {
   width: 1000px;
-  background-color: beige;
+  /*background-color: beige;*/
 }
 
 .home-content .home-content-right {

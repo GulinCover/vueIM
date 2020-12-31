@@ -5,7 +5,7 @@
     </div>
 
     <div class="middle">
-      <slot name="middle"></slot>
+      <div>{{date}}</div>
     </div>
 
     <div class="right">
@@ -15,33 +15,57 @@
 </template>
 
 <script>
+import {timeTools} from "@/utils/timeTools";
+
 export default {
-  name: "GlobalTopTools"
+  name: "GlobalTopTools",
+  data() {
+    return {
+      date: ''
+    }
+  },
+  created() {
+    this.date = timeTools(new Date())
+    setInterval(() => {
+      this.date = timeTools(new Date())
+    }, 1000)
+  }
 }
 </script>
 
 <style>
 .global-top-tools {
+  position: relative;
   width: auto;
-  height: 24px;
-  background-image: linear-gradient(90deg, #eaeaea, #FCFCFC, #eaeaea);
+  height: var(--global-top-height);
+  background-image: linear-gradient(45deg, #cfd9df 0%, #e2ebf0 100%);
   display: flex;
   justify-content: space-between;
+  box-shadow: 0 0 8px slategrey;
 }
 
 .global-top-tools .left {
-  background-color: beige;
-  width: 50px;
-  height: 24px;
+
 }
 
 .global-top-tools .middle {
+  width: 66px;
+  height: var(--global-top-height);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-top: calc(0 - var(--global-top-height) / 2);
+  margin-left: -33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.global-top-tools .middle:hover {
+  cursor: pointer;
 }
 
 .global-top-tools .right {
-  background-color: beige;
-  width: 50px;
-  height: 24px;
+
 }
 
 </style>

@@ -7,9 +7,13 @@
       </div>
       <div class="prev-content">
         <div class="prev-img">
-          <div @click="imgMax" v-if="card.imgs.length !== 0" class="prev-content-img" :style="{backgroundImage: `url(${card.imgs[0]})`}"></div>
+          <div @click="imgMax" v-if="card.imgs.length !== 0" class="prev-content-img">
+            <img :src="card.imgs[0]" alt="">
+          </div>
           <div style="width: 5px"></div>
-          <div @click="imgMax" v-if="card.imgs.length >= 2" class="prev-content-img" :style="{backgroundImage: `url(${card.imgs[1]})`}"></div>
+          <div @click="imgMax" v-if="card.imgs.length >= 2" class="prev-content-img">
+            <img :src="card.imgs[1]" alt="">
+          </div>
         </div>
         <div style="width: 20px"></div>
         <div class="prev-content-text">{{ card.content }}</div>
@@ -37,15 +41,11 @@ export default {
   },
   methods: {
     imgMax(e) {
-      let style = e.target.style;
-      style.position = "relative";
-      if (style.left === null|| style.left === "" || style.left === undefined || style.left === "0%") {
-        style.left = '50%';
-        style.top = '50%';
-      } else {
-        style.left = '0%';
-        style.top = '0%';
-      }
+      e.target.parentNode.classList.add("enlarge")
+      let prev = window.getComputedStyle(
+          document.querySelector('.prev-img'), ':before'
+      );
+      prev.setProperty("visibility", "visible")
     },
   }
 }
@@ -78,6 +78,42 @@ export default {
   justify-content: center;
 }
 
+.prev-img {
+  transition: all 0.5s;
+}
+
+.prev-img::before {
+  content: "";
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(18, 18, 18, 0.25);
+}
+
+.prev-content-img {
+  position: relative;
+  left: 0;
+  top: 0;
+  transition: all .5s;
+}
+
+.prev-content-img img {
+  width: inherit;
+  height: inherit;
+  object-fit: contain;
+  object-position: center;
+}
+
+.prev-content-img.enlarge {
+  left: calc(100vw / 2 - 60px);
+  top: calc(100vh / 2 - 60px);
+  transform: scale(2);
+  z-index: 999;
+}
+
 .global-card .content .prev-img .prev-content-img {
   overflow: hidden;
   height: 120px;
@@ -89,7 +125,7 @@ export default {
 .prev-content .prev-content-text {
   padding: 5px;
   width: 560px;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;

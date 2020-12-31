@@ -1,0 +1,122 @@
+.editor__content .ProseMirror-selectednode {
+    border: 1px solid #58a6b3;
+    border-radius: 14px;
+}
+
+.editor__content p {
+    line-height: 32px;
+}
+
+.editor__content hr {
+    background-color: white;
+    padding: 40px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+}
+.editor__content hr:before {
+    display: block;
+    content: "";
+    width: 500px;
+    border: 1px solid #ebebeb;
+}
+.editor__content hr:hover {
+    border: 1px solid #58a6b3;
+    border-radius: 14px;
+}
+
+.editor__content ul, .editor__content ol {
+    padding-left: 20px;
+}
+
+.editor__content blockquote {
+    margin: 5px 0;
+    border-left: 3px solid #adadad;
+    padding-left: 20px;
+}
+.editor__content pre code {
+    display: block;
+    width: inherit;
+    border-radius: 6px;
+    padding: 10px;
+    background: #424242;
+    color: #ebebeb;
+    line-height: 44px;
+}
+
+.editor__content pre code .hljs-title {
+    color: red;
+}
+.editor__content pre code .hljs-keyword {
+    color: #a4a4ff;
+}
+.editor__content pre code .hljs-string {
+    color: rgb(153,204,153);
+}
+.editor__content pre code .hljs-number {
+    color: cornflowerblue;
+}
+.editor__content pre code .hljs-attribute {
+    color: #ad64ed;
+}
+
+.editor__content table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+.editor__content table td, th {
+    min-width: 1em;
+    border: 2px solid grey;
+    padding: 3px 12px;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+}
+.editor__content table td, th > * {
+    margin-bottom: 0;
+}
+.editor__content table th {
+    font-weight: bold;
+    text-align: left;
+}
+.editor__content table .selectedCell:after {
+    z-index: 2;
+    position: absolute;
+    content: "";
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: rgba(200, 200, 255, 0.4);
+    pointer-events: none;
+}
+.editor__content table .column-resize-handle {
+    position: absolute;
+    right: -2px; top: 0; bottom: 0;
+    width: 4px;
+    z-index: 20;
+    background-color: #adf;
+    pointer-events: none;
+}
+.editor__content .tableWrapper {
+    margin: 1em 0;
+    overflow-x: auto;
+}
+.editor__content .resize-cursor {
+    cursor: ew-resize;
+    cursor: col-resize;
+}
+
+
+
+
+
+
+
+
+
+
+
+

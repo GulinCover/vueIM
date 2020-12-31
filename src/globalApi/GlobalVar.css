@@ -1,0 +1,23 @@
+:root {
+    --submit-page-front-cover-text: "添加封面";
+
+    --topic-page-topic-content-width: 600px;
+    --topic-page-comment-content-width: 800px;
+
+    --topic-page-topic-front-cover-width: 600px;
+    --topic-page-topic-front-cover-height: 300px;
+    --topic-page-topic-front-cover-count: 2;
+
+    --global-backdrop-color: #000;
+    --global-user-avatar-width: 50px;
+    --global-user-avatar-height: 50px;
+
+    --global-dividing-line-color: #cfd9df;
+
+    --global-top-height: 28px;
+    --global-top-button-height: 24px;
+    --global-bottom-width: 1000px;
+
+    --global-white-font-color: #F5F5F5;
+    --global-black-font-color: #000000;
+}

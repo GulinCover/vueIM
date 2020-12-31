@@ -15,27 +15,33 @@ export default {
 </script>
 
 <style>
+@import "globalApi/GlobalVar.css";
+@import "~font-awesome/css/font-awesome.min.css";
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
-  font-family: "font";
+  outline: none;
+  box-sizing: border-box;
 }
-::-webkit-scrollbar {
-  width: 10px;
-  height: 1px;
+body {
+  background-color: rgba(18,18,18,0);
 }
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: linear-gradient(60deg, #535353, #7a7a7a);
-}
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-@font-face {
-  font-family: "font";
-  src: url("./assets/font.ttf") format("ttf");
-}
+/*::-webkit-scrollbar {*/
+/*  width: 10px;*/
+/*  height: 1px;*/
+/*}*/
+/*::-webkit-scrollbar-thumb {*/
+/*  border-radius: 10px;*/
+/*  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
+/*  background: linear-gradient(60deg, #535353, #7a7a7a);*/
+/*}*/
+/*::-webkit-scrollbar-track {*/
+/*  border-radius: 10px;*/
+/*}*/
+/*@font-face {*/
+/*  font-family: "font";*/
+/*  src: url("./assets/font.ttf") format("ttf");*/
+/*}*/
 
 </style>

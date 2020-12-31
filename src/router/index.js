@@ -9,14 +9,24 @@ const routes = [
         component: ()=>import("@/pages/home/Index"),
     },
     {
-        path: "/topic/:id",
+        path: "/topic/page/:id",
         name: "topicPage",
-        component: ()=>import("@/pages/topicPages/TopicPage"),
+        component: ()=>import("@/pages/topicPages/Index"),
     },
     {
         path: "/submit/topic",
         name: "submitTopicPage",
         component: ()=>import("@/pages/submitPage/RichTextEditor"),
+    },
+    {
+        path: "/submit",
+        name: "submitPage",
+        component: ()=>import("@/pages/submitPage/Index"),
+    },
+    {
+        path: "/error/:code",
+        name: "errorPage",
+        component: ()=>import("@/pages/error/Index"),
     },
 ]
 
