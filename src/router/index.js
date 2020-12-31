@@ -11,7 +11,7 @@ const routes = [
     {
         path: "/topic/page/:id",
         name: "topicPage",
-        component: ()=>import("@/pages/topicPages/Index"),
+        component: ()=>import("@/pages/topicPage/Index"),
     },
     {
         path: "/submit/topic",
@@ -26,7 +26,12 @@ const routes = [
     {
         path: "/error/:code",
         name: "errorPage",
-        component: ()=>import("@/pages/error/Index"),
+        component: ()=>import("@/pages/errorPage/Index"),
+    },
+    {
+        path: "/register",
+        name: "registerPage",
+        component: ()=>import("@/pages/registerLoginPage/Index"),
     },
 ]
 

@@ -38,10 +38,13 @@ export default {
   position: relative;
   width: auto;
   height: var(--global-top-height);
-  background-image: linear-gradient(45deg, #cfd9df 0%, #e2ebf0 100%);
+  /*background-image: linear-gradient(45deg, #cfd9df 0%, #e2ebf0 100%);*/
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 0 8px slategrey;
+  box-shadow: 0 0 14px slategrey;
+  backdrop-filter: blur(9px);
+  background-color: rgba(255,255,255,.55);
+  z-index: 999;
 }
 
 .global-top-tools .left {
