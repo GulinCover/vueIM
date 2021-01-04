@@ -1,30 +1,51 @@
 <template>
   <div class="global-card">
-    <slot></slot>
     <div class="content">
-      <div class="title">
-        <h2>{{ card.title }}</h2>
+      <div class="tags">
+        <div class="tags-style" v-for="(item, index) in card.tags" :key="index">
+          {{ item.name }}
+        </div>
       </div>
-      <div class="prev-content">
+      <div class="user-info">
+        <div class="avatar" @click="jumpUserPage(card.id)">
+          <img :src="card.avatar" alt="">
+        </div>
+        <div class="info">
+          <span>{{card.name}}</span>
+          <span>
+            <i v-if="card.sex === '1'" class="fa fa-mars"></i>
+            <i v-else-if="card.sex === '2'" class="fa fa-venus"></i>
+            <i v-else-if="card.sex === '3'" class="fa fa-genderless"></i>
+            <i v-else-if="card.sex === '4'" class="fa fa-transgender"></i>
+            <i v-else-if="card.sex === '5'" class="fa fa-mars-double"></i>
+            <i v-else-if="card.sex === '6'" class="fa fa-venus-double"></i>
+            <i v-else-if="card.sex === '7'" class="fa fa-venus-mars"></i>
+          </span>
+        </div>
+        <div class="level">
+          level:{{card.level}}
+        </div>
+      </div>
+      <div class="prev">
+        <div class="title">
+          <h2>{{ card.title }}</h2>
+        </div>
+        <div style="height: 120px"></div>
         <div class="prev-img">
           <div @click="imgMax" v-if="card.imgs.length !== 0" class="prev-content-img">
             <img :src="card.imgs[0]" alt="">
           </div>
-          <div style="width: 5px"></div>
+          <div style="width: 10px"></div>
           <div @click="imgMax" v-if="card.imgs.length >= 2" class="prev-content-img">
             <img :src="card.imgs[1]" alt="">
           </div>
         </div>
-        <div style="width: 20px"></div>
-        <div class="prev-content-text">{{ card.content }}</div>
       </div>
-      <div class="tags">
-        <div class="tags-style" v-for="(item, index) in card.tags" :key="index">
-          {{ item.name }}
-          <span>|</span>
-        </div>
+      <div class="prev-content">
+        <div class="prev-content-text" @click="jumpTopicPage(card.topicId)">{{ card.content }}</div>
       </div>
     </div>
+    <hr>
   </div>
 </template>
 
@@ -41,11 +62,26 @@ export default {
   },
   methods: {
     imgMax(e) {
+      let b = e.target.parentNode.classList.contains("enlarge")
+      if (b) {
+        e.target.parentNode.classList.remove("enlarge")
+        e.target.parentNode.parentNode.parentNode.parentNode.classList.remove("enlarge")
+        return
+      }
       e.target.parentNode.classList.add("enlarge")
-      let prev = window.getComputedStyle(
-          document.querySelector('.prev-img'), ':before'
-      );
-      prev.setProperty("visibility", "visible")
+      e.target.parentNode.parentNode.parentNode.parentNode.classList.add("enlarge")
+
+    },
+
+    jumpTopicPage(id) {
+      const {href} = this.$router.resolve({path:`/topic/page/${id}`});
+      window.open(href,'_blank')
+    },
+
+    jumpUserPage(id) {
+      const {href} = this.$router.resolve({path:`/user/page/${id}`});
+      window.open(href,'_blank')
+      console.log(123)
     },
   }
 }
@@ -53,44 +89,75 @@ export default {
 
 <style scoped>
 .global-card .content {
-  border-right: 1px solid #c9c9c9;
-  border-left: 1px solid #c9c9c9;
+  position: relative;
   padding: 0 10px;
-  height: 200px;
-  margin: 30px;
-  /*background-color: cornflowerblue;*/
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(9px);
+  background: rgba(255,255,255,.25);
+  transition: all .5s;
+}
+.content.enlarge {
+  height: 520px;
 }
 
-.global-card .content .title {
+.content .user-info {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-info .avatar {
+  width: 48px;
+  height: 48px;
+}
+.avatar:hover {
+  cursor: pointer;
+}
+.avatar img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  object-position: top left;
+}
+.user-info .info span {
+  margin: 5px;
+}
+.user-info .level {
+  width: 128px;
+  height: 17px;
+  line-height: 17px;
+  background: #c6c6c6;
+  border-radius: 8px;
+  text-align: center;
+}
+.content .prev {
+  width: 320px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.content .prev .title {
   height: 50px;
   text-align: center;
 }
-
-.global-card .content .prev-content {
+.prev .prev-img {
+  width: 320px;
   height: 120px;
-  padding: 5px;
-  display: flex;
-  justify-content: start;
-}
-
-.global-card .content .prev-content .prev-img {
   display: flex;
   justify-content: center;
-}
-
-.prev-img {
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left: -160px;
   transition: all 0.5s;
-}
-
-.prev-img::before {
-  content: "";
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(18, 18, 18, 0.25);
 }
 
 .prev-content-img {
@@ -98,20 +165,20 @@ export default {
   left: 0;
   top: 0;
   transition: all .5s;
+  z-index: 1;
 }
 
 .prev-content-img img {
-  width: inherit;
-  height: inherit;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   object-position: center;
 }
 
 .prev-content-img.enlarge {
-  left: calc(100vw / 2 - 60px);
-  top: calc(100vh / 2 - 60px);
-  transform: scale(2);
-  z-index: 999;
+  left: 55%;
+  transform: scale(4);
+  z-index: 2;
 }
 
 .global-card .content .prev-img .prev-content-img {
@@ -122,27 +189,44 @@ export default {
   background-size: contain;
 }
 
-.prev-content .prev-content-text {
+.content .prev-content-text {
+  height: 160px;
+  line-height: 22px;
   padding: 5px;
-  width: 560px;
+  width: 320px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
   overflow: hidden;
   text-indent: 2em;
 }
+.prev-content-text:hover {
+  cursor: pointer;
+}
 
 .global-card .content .tags {
-  height: 30px;
-  /*text-align: center;*/
+  position: absolute;
+  top: 25%;
+  left: -64px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .tags .tags-style {
-  margin: 2px;
-  /*background-color: #535353;*/
-  padding: 2px;
+  backdrop-filter: blur(9px);
+  background-color: rgba(255,255,255,.25);
+  box-shadow: 0 0 2px grey;
   display: inline-block;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 12px;
+  border: 1px solid grey;
+  text-align: center;
+  transition: all .2s;
+}
+.tags-style:hover {
+  cursor: pointer;
+  box-shadow: 0 1px 2px black;
 }
 </style>

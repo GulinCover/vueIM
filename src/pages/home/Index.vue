@@ -1,9 +1,6 @@
 <template>
   <div class="home-index">
     <global-top-tools class="top-tools">
-      <template slot="middle" class="middle">
-        <span>{{ date }}</span>
-      </template>
     </global-top-tools>
 
     <div style="height: 24px"></div>
@@ -12,7 +9,7 @@
       <div class="home-content-middle">
         <global-card v-for="(item, index) in cards" :key="index"
                      :card="item"
-        ><hr></global-card>
+        ></global-card>
 
       </div>
       <div class="home-content-right"></div>
@@ -26,7 +23,6 @@
 
 <script>
 import GlobalTopTools from "@/components/GlobalTopTools";
-import {timeTools} from "@/utils/timeTools"
 import GlobalBottom from "@/components/GlobalBottom";
 import GlobalCard from "@/components/GlobalCard";
 
@@ -79,7 +75,13 @@ export default {
 
       cards: [
         {
+          id: '123',
+          name: "alex",
+          avatar: "",
+          sex: "2",
+          level: "1",
           title: "this is a title",
+          topicId: '125',
           imgs: [
             "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
             "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
@@ -113,7 +115,13 @@ export default {
           ],
         },
         {
+          id: '1233',
+          name: "test",
+          avatar: "",
+          sex: "3",
+          level: "2",
           title: "this is a title",
+          topicId: '1242145',
           content: "this is a prev-content",
           imgs: [
               "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg",
@@ -134,7 +142,13 @@ export default {
           ],
         },
         {
+          id: '1231',
+          name: "qwe",
+          avatar: "",
+          sex: "4",
+          level: "4",
           title: "this is a title",
+          topicId: '12412425',
           content: "this is a prev-content",
           imgs: [
               "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1011150365,2195457257&fm=26&gp=0.jpg",
@@ -155,7 +169,13 @@ export default {
           ],
         },
         {
+          id: '122313',
+          name: "tyew",
+          avatar: "",
+          sex: "5",
+          level: "1",
           title: "this is a title",
+          topicId: '4235235',
           content: "this is a prev-content",
           imgs: [],
           tags: [
@@ -174,7 +194,13 @@ export default {
           ],
         },
         {
+          id: '123',
+          name: "alex",
+          avatar: "",
+          sex: "2",
+          level: "1",
           title: "this is a title",
+          topicId: '5325235',
           content: "this is a prev-content",
           imgs: [],
           tags: [
@@ -193,7 +219,13 @@ export default {
           ],
         },
         {
+          id: '123213',
+          name: "alex",
+          avatar: "",
+          sex: "2",
+          level: "1",
           title: "this is a title",
+          topicId: '45151235412',
           content: "this is a prev-content",
           imgs: [],
           tags: [
@@ -220,10 +252,6 @@ export default {
     GlobalTopTools
   },
   created() {
-    this.date = timeTools(new Date())
-    setInterval(() => {
-      this.date = timeTools(new Date())
-    }, 1000)
   }
 }
 </script>
@@ -244,6 +272,7 @@ export default {
 }
 
 .home-index .home-content {
+  margin-top: 10px;
   display: flex;
   margin-bottom: 300px;
   /*height: 800px;*/
@@ -255,7 +284,6 @@ export default {
 }
 
 .home-content .home-content-middle {
-  width: 1000px;
   /*background-color: beige;*/
 }
 

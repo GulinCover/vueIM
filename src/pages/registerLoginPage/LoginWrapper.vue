@@ -36,23 +36,10 @@
           </button>
         </div>
       </div>
+      <div class="input3">
+        <img :src="qrcode" alt="">
+      </div>
     </div>
-    <!--    <div class="input">-->
-    <!--      <div class="user">-->
-    <!--        <i class="fa fa-address-book-o fa-2x"></i>-->
-    <!--        <input type="text" placeholder="请输入账户">-->
-    <!--      </div>-->
-    <!--      <div class="delimiter"></div>-->
-    <!--      <div class="pwd">-->
-    <!--        <i class="fa fa-keyboard-o fa-2x"></i>-->
-    <!--        <input type="password" placeholder="请输入密码">-->
-    <!--      </div>-->
-    <!--      <div class="button">-->
-    <!--        <button class="submit-button">-->
-    <!--          <span>确定</span>-->
-    <!--        </button>-->
-    <!--      </div>-->
-    <!--    </div>-->
     <div class="bottom-login-method">
       <i class="fa fa-weixin fa-3x" @click="showOne" @mouseover="activeW" @mouseleave="cancel"></i>
       <i class="fa fa-github fa-3x" @click="showTwo" @mouseover="activeG" @mouseleave="cancel"></i>
@@ -69,6 +56,7 @@ export default {
   data() {
     return {
       isLeft: true,
+      qrcode: ""
     }
   },
   mounted() {
@@ -98,20 +86,28 @@ export default {
     showOne() {
       let element = document.querySelector(".qrcode-login");
       element.classList.add("left")
-      let input = document.querySelector(".input1");
-      input.classList.add("is-qrcode")
+      let input1 = document.querySelector(".input1");
+      let input3 = document.querySelector(".input3");
+      input1.classList.add("is-qrcode")
+      input3.classList.add("is-qrcode")
+      this.qrcode = "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2824215521,3650143848&fm=111&gp=0.jpg"
     },
     showTwo() {
       let element = document.querySelector(".qrcode-login");
       element.classList.add("left")
-      let input = document.querySelector(".input1");
-      input.classList.remove("is-qrcode")
+      let input1 = document.querySelector(".input1");
+      let input3 = document.querySelector(".input3");
+      input3.classList.remove("is-qrcode")
+      input1.classList.remove("is-qrcode")
     },
     showThree() {
       let element = document.querySelector(".qrcode-login");
       element.classList.add("left")
-      let input = document.querySelector(".input1");
-      input.classList.add("is-qrcode")
+      let input1 = document.querySelector(".input1");
+      let input3 = document.querySelector(".input3");
+      input1.classList.add("is-qrcode")
+      input3.classList.add("is-qrcode")
+      this.qrcode = "https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3145417195,3821890915&fm=26&gp=0.jpg"
     },
 
     callbackLogin() {
@@ -152,6 +148,28 @@ export default {
   width: 400px;
   margin: 0 80px;
   transition: all .5s;
+}
+.qrcode-login .input3 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: -60px;
+  left: 180px;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all .5s;
+  z-index: -1;
+}
+.input3 img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+}
+.input3.is-qrcode {
+  z-index: 99;
+  opacity: 1;
+  transform: scale(1);
 }
 .input2.is-qrcode,
 .input1.is-qrcode {

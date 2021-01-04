@@ -34,6 +34,7 @@ export default {
 <style scoped>
 .entry {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

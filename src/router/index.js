@@ -33,6 +33,11 @@ const routes = [
         name: "registerPage",
         component: ()=>import("@/pages/registerLoginPage/Index"),
     },
+    {
+        path: "/user/page/:id",
+        name: "userPage",
+        component: ()=>import("@/pages/userPage/Index"),
+    },
 ]
 
 let router = new VueRouter({
