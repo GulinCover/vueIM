@@ -3,6 +3,7 @@
     <p v-html="policy"></p>
     <div class="underscore"></div>
   </div>
+
 </template>
 
 <script>
