@@ -117,7 +117,7 @@ export default {
 
 
       let element = document.querySelector(".card")
-      const r = id * 880
+      const r = id * 1700
       element.style.top = `-${r}px`
     }
   }
@@ -136,7 +136,7 @@ export default {
   position: relative;
   width: 880px;
   margin: 4px auto -300px;
-  height: 1200px;
+  height: 2040px;
 }
 .user-wrapper .user-content {
   position: relative;
@@ -190,7 +190,7 @@ export default {
 .content-wrapper .content {
   position: relative;
   overflow: hidden;
-  height: 880px;
+  height: 1700px;
   width: 100%;
   backdrop-filter: blur(9px);
   background-color: rgba(226,235,240,.55);
@@ -200,12 +200,12 @@ export default {
 .content .card {
   position: relative;
   top: 0;
-  height: 4400px;
+  height: 8500px;
   transition: all .5s;
 }
 
 .card .card-wrapper {
-  height: 880px;
+  height: 1700px;
 }
 
 </style>

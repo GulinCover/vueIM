@@ -5,8 +5,8 @@
     </div>
     <div class="nickname">
       <label for="nickname">昵称</label>
-      <input id="nickname" type="text" autocomplete="off" v-model="userAbs.nickname">
-      <p>昵称，网络中昵称是您在回复，私聊等时所显示的名字。每个用户都能为自己起个性化的超酷昵称，但昵称是不可以互相重复的，并且不能包含任何符号。（更改时请慎重！需要消耗一定的coin购买！）</p>
+      <input id="nickname" type="text" autocomplete="off" v-model="userAbs.nickname" disabled="true">
+      <p>昵称，网络中昵称是您在回复，私聊等时所显示的名字。每个用户都能为自己起个性化的超酷昵称，但昵称是不可以互相重复的，并且不能包含任何符号。（#更改时请慎重！需要消耗一定的coin购买！）</p>
     </div>
     <div class="avatar">
       <img :src="userAbs.avatar" alt="">
@@ -92,21 +92,79 @@
       <label for="email">
         Email
       </label>
-      <input id="email" type="text" autocomplete="off" v-model="userAbs.email">
+      <div>
+        <input id="email" type="text" autocomplete="off" v-model="userAbs.email" disabled="true">
+        <button>编辑</button>
+      </div>
       <p>Email是您注册账号时所提供的依据，是不可重复的。是您登录时提供登录账号的方法之一。也是您遗忘密码后，找回密码的凭证，请妥善保管，切勿泄露。</p>
     </div>
-    <div class="bind-phone">phone</div>
-    <div class="password">password</div>
-    <div class="desc">desc</div>
-    <div class="location">location</div>
+    <div class="bind-phone">
+      <label for="phone">
+        Phone
+      </label>
+      <div>
+        <input id="phone" type="text" autocomplete="off" v-model="userAbs.phone" disabled="true">
+        <button>编辑</button>
+      </div>
+      <p>Phone是您注册账号时所提供的依据，是不可重复的。是您登录时提供登录账号的方法之一。也是您遗忘密码后，找回密码的凭证，请妥善保管，切勿泄露。</p>
+    </div>
+    <div class="password">
+      <label for="password">
+        密码
+      </label>
+      <div>
+        <input id="password" type="password" autocomplete="off" v-model="userAbs.password" disabled="true">
+        <button>编辑</button>
+      </div>
+      <p>密码是您登录账号时所提供的依据，请妥善保管，切勿泄露。</p>
+    </div>
+    <div class="desc">
+      <label>个性简介</label>
+      <div>
+        <textarea v-model="userAbs.desc" rows="10">
+        </textarea>
+      </div>
+    </div>
+    <div class="location">
+      <label>位置</label>
+      <div class="location-wrapper">
+        <div>
+          <select v-model="userAbs.defaultSelectLocation.defaultSelectCountry" @change="selectCountry($event)">
+            <option v-for="(item ,key) in userAbs.location.Location.CountryRegion" :key="key" :value ="item.Name">{{ item.Name }}</option>
+          </select>
+          <p>{{userAbs.defaultSelectLocation.defaultSelectCountry}}</p>
+        </div>
+        <div>
+          <select v-model="userAbs.defaultSelectLocation.defaultSelectState" @change="selectState($event)">
+            <option v-for="(item ,key) in userAbs.canSelectLocation.canSelectState" :key="key" :value ="item.Name">{{ item.Name }}</option>
+          </select>
+          <p>{{userAbs.defaultSelectLocation.defaultSelectState}}</p>
+        </div>
+        <div>
+          <select v-model="userAbs.defaultSelectLocation.defaultSelectCity">
+            <option v-for="(item ,key) in userAbs.canSelectLocation.canSelectCity" :key="key" :value ="item.Name">{{ item.Name }}</option>
+          </select>
+          <p>{{userAbs.defaultSelectLocation.defaultSelectCity}}</p>
+        </div>
+
+      </div>
+    </div>
     <div class="save">
-      <button>save</button>
+      <button>保存改动</button>
     </div>
+    <hr>
     <div class="issue">
-      issue
+      <label>意见&建议</label>
+      <div>
+        <textarea v-model="userAbs.issue" rows="10">
+        </textarea>
+        <button>提交</button>
+      </div>
     </div>
+    <hr>
     <div class="logout">
-      <button>logout</button>
+      <button>注销登出</button>
+      <p>注销是清除当前登录的用户信息，清除后即可使用其他用户来登录。（#注销后将需要重新输入账号和密码来登录服务，请谨慎考虑!）</p>
     </div>
   </div>
 </template>
@@ -126,19 +184,75 @@ export default {
         phone: '',
         password: '',
         desc: '',
-        location: '',
+        location: require("@/assets/location.json"),
+        defaultSelectLocation: {
+          defaultSelectCountry: '中国',
+          defaultSelectState: '北京',
+          defaultSelectCity: '东城',
+        },
+        canSelectLocation: {
+          canSelectState: null,
+          canSelectCity: null,
+        },
+        issue: '',
       }
     }
   },
   methods: {
     editorAvatar() {
+    },
 
-    }
-  }
+    selectCountry(e) {
+      const index = e.target.selectedIndex
+      let event = {
+        target: {
+          selectedIndex: 0
+        }
+      }
+      const state = this.userAbs.location.Location.CountryRegion[index].State
+      if (Array.isArray(state) && state !== null && state !== undefined) {
+        this.userAbs.canSelectLocation.canSelectState = state
+        this.userAbs.defaultSelectLocation.defaultSelectState = this.userAbs.canSelectLocation.canSelectState[0].Name
+        this.selectState(event)
+        return
+      } else if ((state instanceof Object)) {
+        this.userAbs.canSelectLocation.canSelectState = state.City
+        this.userAbs.defaultSelectLocation.defaultSelectState = this.userAbs.canSelectLocation.canSelectState[0].Name
+        this.selectState(event)
+        return
+      }
+      this.userAbs.canSelectLocation.canSelectState = [{"Name":"空"}]
+      this.userAbs.defaultSelectLocation.defaultSelectState = this.userAbs.canSelectLocation.canSelectState[0].Name
+      this.selectState(event)
+    },
+    selectState(e) {
+      const index = e.target.selectedIndex;
+      if (this.userAbs.canSelectLocation.canSelectState.length <= 1) {
+        this.userAbs.canSelectLocation.canSelectCity = [{"Name":"空"}]
+        this.userAbs.defaultSelectLocation.defaultSelectCity = this.userAbs.canSelectLocation.canSelectCity[0].Name
+        return
+      }
+      let city = this.userAbs.canSelectLocation.canSelectState[index].City
+      if (city !== undefined && city !== null && Array.isArray(city)) {
+        this.userAbs.canSelectLocation.canSelectCity = city
+        this.userAbs.defaultSelectLocation.defaultSelectCity = this.userAbs.canSelectLocation.canSelectCity[0].Name
+        return
+      }
+      this.userAbs.canSelectLocation.canSelectCity = [{"Name":"空"}]
+      this.userAbs.defaultSelectLocation.defaultSelectCity = this.userAbs.canSelectLocation.canSelectCity[0].Name
+    },
+  },
+  mounted() {
+    this.userAbs.canSelectLocation.canSelectState = this.userAbs.location.Location.CountryRegion[0].State
+    this.userAbs.canSelectLocation.canSelectCity = this.userAbs.location.Location.CountryRegion[0].State[0].City
+  },
 }
 </script>
 
 <style scoped>
+hr {
+  margin: 20px 0;
+}
 .access-wrapper {
   padding: 20px;
 }
@@ -157,6 +271,9 @@ export default {
   align-items: flex-start;
 }
 
+.password input,
+.bind-phone input,
+.bind-email input,
 .nickname input {
   height: 27px;
   margin-top: 5px;
@@ -164,6 +281,10 @@ export default {
   padding-left: 10px;
 }
 
+.logout p,
+.password p,
+.bind-phone p,
+.bind-email p,
 .avatar p,
 .nickname p {
   font-size: 12px;
@@ -179,6 +300,11 @@ export default {
   align-items: start;
 }
 
+.issue div button,
+.save button,
+.password div button,
+.bind-phone div button,
+.bind-email div button,
 .avatar button {
   margin-top: 5px;
   margin-left: 64px;
@@ -190,6 +316,11 @@ export default {
   transition: all .5s;
 }
 
+.issue div button:hover,
+.save button:hover,
+.password div button:hover,
+.bind-phone div button:hover,
+.bind-email div button:hover,
 .avatar button:hover {
   cursor: pointer;
   border: 1px solid #00c400;
@@ -264,6 +395,7 @@ export default {
   backdrop-filter: blur(9px);
 }
 
+.bind-phone,
 .bind-email {
   margin-top: 10px;
   display: flex;
@@ -271,11 +403,79 @@ export default {
   justify-content: center;
   align-items: flex-start;
 }
+
+.bind-phone label,
 .bind-email label {
   margin-bottom: 5px;
 }
-.bind-email p {
 
+.location-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.location-wrapper div {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.issue,
+.desc {
+  margin-top: 10px;
+}
+.issue textarea,
+.desc textarea {
+  padding-top: 10px;
+  margin-top: 5px;
+  width: 320px;
+  padding-left: 10px;
+}
+.issue div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.issue div button {
+  margin-right: 20px;
+}
+
+.location {
+  margin-top: 10px;
+}
+
+.logout,
+.save {
+  margin-top: 10px;
+}
+
+.save button {
+  width: 128px;
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.logout button {
+  border: none;
+  border-radius: 4px;
+  height: 27px;
+  width: 128px;
+  background: linear-gradient(to bottom, #c9c9c9, #ff1f1f);
+  transition: all .2s;
+  text-align: center;
+}
+.logout button:hover {
+  cursor: pointer;
+  border: 1px solid #ff1f1f;
+  color: grey;
+  width: 196px;
 }
 
 </style>

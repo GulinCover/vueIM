@@ -1,5 +1,5 @@
 <template>
-  <div class="history-recode">
+  <div class="subscript-wrapper">
     <div class="wrapper" v-for="(item, key) in infoLists" :key="key">
       <div class="history-card" @click="jumpHistory(item)">
         <info-notification-subscript-card
@@ -20,7 +20,7 @@
 import InfoNotificationSubscriptCard from "@/components/InfoNotificationSubscriptCard";
 
 export default {
-  name: "HistoryRecode",
+  name: "InfoNotificationSubscriptShow",
   components: {
     InfoNotificationSubscriptCard,
   },
@@ -156,34 +156,39 @@ export default {
       ]
     }
   },
+
   methods: {
     jumpHistory(item) {
       const resolve = this.$router.resolve(`/topic/page/${item.topicId}`)
       window.open(resolve.href, '_blank')
     }
-  },
+  }
 }
 </script>
 
 <style scoped>
-.history-recode {
-  padding: 10px;
+.subscript-wrapper {
+  width: 380px;
+  height: 1560px;
+  padding: 10px 5px 5px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   overflow: scroll;
   overflow-x: hidden;
-  height: 1660px;
 }
-.history-recode .wrapper {
+.subscript-wrapper .wrapper {
+  margin-bottom: 15px;
+}
+.history-card {
+  border-radius: 14px;
   transition: all .5s;
-  margin: 10px;
 }
-
-.history-recode .wrapper:hover {
-  cursor: pointer;
+.history-card:hover {
   background: antiquewhite;
+  cursor: pointer;
   color: grey;
 }
+
 </style>

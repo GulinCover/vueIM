@@ -27,18 +27,18 @@ export default {
 body {
   background-color: rgba(18,18,18,0);
 }
-/*::-webkit-scrollbar {*/
-/*  width: 10px;*/
-/*  height: 1px;*/
-/*}*/
-/*::-webkit-scrollbar-thumb {*/
-/*  border-radius: 10px;*/
-/*  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
-/*  background: linear-gradient(60deg, #535353, #7a7a7a);*/
-/*}*/
-/*::-webkit-scrollbar-track {*/
-/*  border-radius: 10px;*/
-/*}*/
+::-webkit-scrollbar {
+  width: 3px;
+  height: 1px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: linear-gradient(60deg, #535353, #7a7a7a);
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
 /*@font-face {*/
 /*  font-family: "font";*/
 /*  src: url("./assets/font.ttf") format("ttf");*/
