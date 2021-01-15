@@ -34,9 +34,19 @@ const routes = [
         component: ()=>import("@/pages/registerLoginPage/Index"),
     },
     {
-        path: "/user/page/:id",
+        path: "/user/page/manager/:id",
         name: "userPage",
         component: ()=>import("@/pages/userPage/Index"),
+    },
+    {
+        path: "/auction",
+        name: "auction",
+        component: ()=>import("@/pages/auction/Index"),
+    },
+    {
+        path: "/auction/top",
+        name: "auctionTop",
+        component: ()=>import("@/pages/auctionTop/Index"),
     },
 ]
 

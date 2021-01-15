@@ -91,7 +91,7 @@ export default {
 .global-bottom {
   margin-top: -300px;
   height: 300px;
-  width: auto;
+  width: 100%;
   background-image: linear-gradient(-45deg, #0a0a0a, #212121);
   color: #FCFCFC;
   display: flex;
